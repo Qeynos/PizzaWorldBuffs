@@ -83,12 +83,12 @@ end
 -- These are the NPC yell triggers we use to detect that one of the buffs has dropped.
 local yellTriggers = {
   A = {
-    O = 'The dread lady, Onyxia, hangs from the arches!',
-    N = 'Citizens of the Alliance, the Lord of Blackrock is slain! Nefarian has been subdued',
+    O = '一起庆祝英雄的诞生',
+    N = '黑石领主已经被干掉了',
   },
   H = {
-    O = 'The brood mother, Onyxia, has been slain!',
-    N = 'NEFARIAN IS SLAIN! People of Orgrimmar, bow down before the might of',
+    O = '奥妮克希亚已经被斩杀了',
+    N = '奈法利安被杀掉了',
   },
 }
 
