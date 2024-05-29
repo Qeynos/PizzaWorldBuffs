@@ -39,7 +39,7 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
   if command == 'align' then
     local align = string.lower(msg)
     if align ~= 'left' and align ~= 'center' and align ~= 'right' then
-      PWB:Print('Invalid option. Valid options are: left, center, right')
+      PWB:Print('无效选项，有效选项为：left, center, right')
       return
     end
 
@@ -90,7 +90,7 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
   if command == 'logout' then
     local number = tonumber(msg)
     if not number or (number ~= 0 and number ~= 1) then
-      PWB:Print('Valid options are 0 and 1')
+      PWB:Print('有效选项为 0 和 1')
       return
     end
 
