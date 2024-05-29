@@ -26,13 +26,13 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
   if command == 'fontsize' then
     local fontSize = tonumber(msg)
     if not fontSize then
-      PWB:Print('Invalid option. Only numbers allowed!')
+      PWB:Print('无效选项，只允许使用数字！')
       return
     end
 
     PWB_config.fontSize = fontSize
     PWB.frame.updateFrames()
-    PWB:Print('Changed font size to ' .. PWB_config.fontSize)
+    PWB:Print('已将字体大小更改为 ' .. PWB_config.fontSize)
     return
   end
 
@@ -45,19 +45,19 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
 
     PWB_config.align = align
     PWB.frame.updateFrames()
-    PWB:Print('Changed text alignment to ' .. PWB_config.align)
+    PWB:Print('已将文本对齐方式更改为 ' .. PWB_config.align)
     return
   end
 
   if command == 'all' then
     local number = tonumber(msg)
     if not number or (number ~= 0 and number ~= 1) then
-      PWB:Print('Valid options are 0 and 1')
+      PWB:Print('有效选项为 0 和 1')
       return
     end
 
     PWB_config.allFactions = number == 1
-    local message = 'Showing ' .. (PWB_config.allFactions and 'both' or 'only your') .. ' factions\' world buff timers'
+    local message = '显示 ' .. (PWB_config.allFactions and '双方' or '仅您的') .. ' 阵营的世界增益计时器'
     PWB:Print(message)
     return
   end
@@ -65,7 +65,7 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
   if command == 'sharing' then
     local number = tonumber(msg)
     if not number or (number ~= 0 and number ~= 1) then
-      PWB:Print('Valid options are 0 and 1')
+      PWB:Print('有效选项为 0 和 1')
       return
     end
 
@@ -80,8 +80,8 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
       end)
     end
 
-    local suffix = PWB_config.sharingEnabled and 'enabled. You will see other peoples\' timers too.' or 'disabled. You will only see your own timers.'
-    local message = 'Timer sharing between you and other players ' .. suffix
+    local suffix = PWB_config.sharingEnabled and '已启用，您将看到其他玩家的计时器。' or '已禁用，您只会看到您自己的计时器。'
+    local message = '您和其他玩家之间的计时器共享' .. suffix
     PWB:Print(message)
 
     return
@@ -96,13 +96,13 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
 
     PWB_config.autoLogout = number == 1
 
-    local suffix = PWB_config.autoLogout and 'enabled. This will be disabled again the next time you relog or reload your UI.' or 'disabled.'
-    PWB:Print('Auto-logout after receiving next buff ' .. suffix)
+    local suffix = PWB_config.autoLogout and '启用，这将在您下次重新登录或重新加载UI时自动禁用。' or '禁用。'
+    PWB:Print('接收下一个增益后自动登出' .. suffix)
     return
   end
 
   if command == 'version' then
-    PWB:Print('Version ' .. PWB.utils.getVersion())
+    PWB:Print('版本 ' .. PWB.utils.getVersion())
     return
   end
 
