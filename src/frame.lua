@@ -133,9 +133,14 @@ PWB.frame:SetScript('OnEvent', function ()
   end
 end)
 
-function PWB.frame.updateFrames()
+function PWB.frame.updateFrames()  
   for i, frame in ipairs(PWB.frames) do
     frame.frame.text:SetFont(STANDARD_TEXT_FONT, PWB_config.fontSize, 'OUTLINE')
+
+    if frame.name == 'PizzaWorldBuffsHeader' then
+      frame.text = PWB.Colors.primary .. 'Pizza' .. PWB.Colors.secondary .. 'WorldBuffs' .. PWB.Colors.grey .. (PWB_config.autoLogout and (PWB_config.setQuit and ' (AutoQuit)' or ' (AutoLogout)') or '')
+      frame.frame.text:SetText(frame.text)
+    end
 
     if frame.timer then
       local timer = PWB_timers[frame.timer.faction][frame.timer.boss]
