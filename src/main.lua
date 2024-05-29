@@ -45,7 +45,7 @@ PWB:SetScript('OnEvent', function ()
   if event == 'ADDON_LOADED' and arg1 == 'PizzaWorldBuffs' then
     if PWB_config.autoLogout then
       PWB_config.autoLogout = false
-      PWB:Print('Auto-logout disabled automatically. To enable it again, use /wb logout 1')
+      PWB:Print('自动登出功能已自动禁用。要再次启用，请使用 /wb logout 1')
     end
   end
 
@@ -78,7 +78,7 @@ PWB:SetScript('OnEvent', function ()
       PWB.core.setTimer(faction, boss, h, m, PWB.me, PWB.me)
 
       if PWB_config.autoLogout then
-        PWB:Print('About to receive buff and auto-logout is enabled. Will log out in 1 minute.')
+        PWB:Print('即将收到增益效果，自动登出已启用。将在1分钟后登出。')
         PWB.logoutAt = time() + 60
       end
     end
@@ -117,7 +117,7 @@ PWB:SetScript('OnEvent', function ()
         end
 
         if tonumber(remoteVersion) > PWB.utils.getVersionNumber() and not PWB.updateNotified then
-          PWB:Print('New version available, please update to get more accurate timers! https://github.com/Pizzahawaiii/PizzaWorldBuffs')
+          PWB:Print('新版本可用，请更新以获得更准确的计时器！https://github.com/Pizzahawaiii/PizzaWorldBuffs')
           PWB.updateNotified = true
         end
       end
@@ -134,7 +134,7 @@ PWB:SetScript('OnUpdate', function ()
   if PWB_config.autoLogout and PWB.logoutAt and time() >= PWB.logoutAt then
     PWB.logoutAt = nil
     PWB.core.publishTimers()
-    PWB:Print('Logging out...')
+    PWB:Print('正在登出...')
     Logout()
   elseif PWB.core.shouldPublishTimers() then
     PWB.core.publishTimers()
