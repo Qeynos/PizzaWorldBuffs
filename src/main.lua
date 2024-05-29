@@ -43,6 +43,8 @@ PWB:RegisterEvent('CHAT_MSG_CHANNEL')
 PWB:RegisterEvent('CHAT_MSG_MONSTER_YELL')
 PWB:SetScript('OnEvent', function ()
   if event == 'ADDON_LOADED' and arg1 == 'PizzaWorldBuffs' then
+    -- Initialize config with default values if necessary
+    PWB.config.init()
     if PWB_config.autoLogout then
       PWB_config.autoLogout = false
       PWB:Print('自动登出功能已自动禁用。要再次启用，请使用 /wb logout 1')
@@ -54,8 +56,6 @@ PWB:SetScript('OnEvent', function ()
     PWB.me = UnitName('player')
     PWB.myFaction = string.sub(UnitFactionGroup('player'), 1, 1)
 
-    -- Initialize config with default values if necessary
-    PWB.config.init()
 
     -- If we don't have any timers or we still have timers in a deprecated format, clear/initialize them first.
     if not PWB.utils.hasTimers() or PWB.utils.hasDeprecatedTimerFormat() then
