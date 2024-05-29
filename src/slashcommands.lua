@@ -101,6 +101,20 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
     return
   end
 
+  if command == 'setquit' then
+    local number = tonumber(msg)
+    if not number or (number ~= 0 and number ~= 1) then
+      PWB:Print('有效选项为 0 和 1')
+      return
+    end
+
+    PWB_config.setQuit = number == 1
+
+    local suffix = PWB_config.setQuit and ' 已启用。' or ' 已禁用。'
+    PWB:Print('使用退出游戏代替登出' .. suffix)
+    return
+  end
+  
   if command == 'version' then
     PWB:Print('版本 ' .. PWB.utils.getVersion())
     return
@@ -112,6 +126,7 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r all ' .. (PWB_config.allFactions and 1 or 0) .. PWB.Colors.grey .. ' - 显示所有阵营的世界增益计时器')
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r sharing ' .. (PWB_config.sharingEnabled and 1 or 0) .. PWB.Colors.grey .. ' - 启用你和其他玩家之间的计时器共享')
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r logout ' .. (PWB_config.autoLogout and 1 or 0) .. PWB.Colors.grey .. ' - 接收下一个增益后自动登出')
+  PWB:PrintClean(PWB.Colors.primary .. '   /wb|r setquit ' .. (PWB_config.setQuit and 1 or 0) .. PWB.Colors.grey .. ' - 使用退出游戏代替登出')
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r clear ' .. PWB.Colors.grey .. '- 清除所有世界增益计时器')
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r fontSize ' .. PWB_config.fontSize .. PWB.Colors.grey .. ' - 设置字体大小')
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r align ' .. PWB_config.align .. PWB.Colors.grey .. ' - 对齐文本 左/中/右')
