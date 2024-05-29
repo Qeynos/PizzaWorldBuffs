@@ -19,14 +19,14 @@ local function initFrame(f, anchor)
 
       local text
       if f.timer then
-        local city = f.timer.faction == 'A' and 'SW' or 'OG'
+        local city = f.timer.faction == 'A' and '暴风城' or '奥格瑞玛'
         local timer = PWB_timers[f.timer.faction][f.timer.boss]
-        local suffix = ' head has no timer, it\'s probably despawned'
+        local suffix = '的头没有计时器，可能已经消失了。'
 
         if timer then
           local h, m = PWB.core.getTimeLeft(timer.h, timer.m)
-          local timeLeft = h == 0 and m == 0 and ' NOW!' or ' in ' .. PWB.utils.toString(h, m)
-          suffix = ' head will despawn ' .. timeLeft
+          local timeLeft = h == 0 and m == 0 and ' NOW!' or PWB.utils.toString(h, m)
+          suffix = '的头将在 '.. timeLeft .. ' 后消失。'
         end
 
         text = '(' .. city .. ') ' .. PWB.Bosses[f.timer.boss] .. suffix
