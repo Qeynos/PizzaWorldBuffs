@@ -95,14 +95,7 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
     end
 
     PWB_config.autoLogout = number == 1
-    if PWB_config.autoLogout then
-      PWB.frames = {
-        {
-          name = 'PizzaWorldBuffsHeader',
-          text = PWB.Colors.primary .. 'Pizza' .. PWB.Colors.secondary .. 'WorldBuffs' .. (PWB_config.setQuit and '(AutoQuit)' or '(AutoLogout)'),
-        }
-      }
-    end
+
     local suffix = PWB_config.autoLogout and ' 已启用，这将在您下次重新登录或重新加载UI时自动禁用。' or ' 已禁用。'
     PWB:Print('接收下一个增益后自动登出' .. suffix)
     return
