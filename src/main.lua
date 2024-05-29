@@ -134,8 +134,13 @@ PWB:SetScript('OnUpdate', function ()
   if PWB_config.autoLogout and PWB.logoutAt and time() >= PWB.logoutAt then
     PWB.logoutAt = nil
     PWB.core.publishTimers()
-    PWB:Print('正在登出...')
-    Logout()
+    if PWB_config.setQuit then
+      PWB:Print('正在退出...')
+      Quit()
+    else
+      PWB:Print('正在登出...')
+      Logout()
+    end
   elseif PWB.core.shouldPublishTimers() then
     PWB.core.publishTimers()
   end
