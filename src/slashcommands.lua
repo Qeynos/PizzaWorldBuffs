@@ -128,7 +128,7 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r logout ' .. (PWB_config.autoLogout and 1 or 0) .. PWB.Colors.grey .. ' - 接收下一个增益后自动登出')
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r setquit ' .. (PWB_config.setQuit and 1 or 0) .. PWB.Colors.grey .. ' - 使用退出游戏代替登出')
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r clear ' .. PWB.Colors.grey .. '- 清除所有世界增益计时器')
-  PWB:PrintClean(PWB.Colors.primary .. '   /wb|r fontSize ' .. PWB_config.fontSize .. PWB.Colors.grey .. ' - 设置字体大小')
+  PWB:PrintClean(PWB.Colors.primary .. '   /wb|r fontsize ' .. PWB_config.fontSize .. PWB.Colors.grey .. ' - 设置字体大小')
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r align ' .. PWB_config.align .. PWB.Colors.grey .. ' - 对齐文本 左/中/右')
   PWB:PrintClean(PWB.Colors.primary .. '   /wb|r version ' .. PWB.Colors.grey .. '- 显示当前版本')
 end
