@@ -21,12 +21,12 @@ local function initFrame(f, anchor)
       if f.timer then
         local city = f.timer.faction == 'A' and '暴风城' or '奥格瑞玛'
         local timer = PWB_timers[f.timer.faction][f.timer.boss]
-        local suffix = '的头没有计时器，可能已经消失了。'
+        local suffix = '头可能已经消失了。'
 
         if timer then
           local h, m = PWB.core.getTimeLeft(timer.h, timer.m)
           local timeLeft = h == 0 and m == 0 and ' NOW!' or PWB.utils.toString(h, m)
-          suffix = '的头将在 '.. timeLeft .. ' 后消失。'
+          suffix = '头的持续时间还剩 '.. timeLeft .. '。'
         end
 
         text = '(' .. city .. ') ' .. PWB.Bosses[f.timer.boss] .. suffix

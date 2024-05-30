@@ -78,7 +78,7 @@ PWB:SetScript('OnEvent', function ()
       PWB.core.setTimer(faction, boss, h, m, PWB.me, PWB.me)
 
       if PWB_config.autoLogout then
-        PWB:Print('即将收到增益效果，自动登出已启用。将在1分钟后登出。')
+        PWB:Print('即将收到增益效果，自动登出已启用，将在1分钟后登出。')
         PWB.logoutAt = time() + 60
       end
     end
