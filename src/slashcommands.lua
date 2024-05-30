@@ -87,6 +87,18 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
     return
   end
 
+  if command == 'interval' then
+    local interval = tonumber(msg)
+    if not interval or interval <= 0 then
+      PWB:Print('无效选项，只允许使用数字！')
+      return
+    end
+
+    PWB_config.interval = interval
+    PWB:Print('已将更新间隔设置为 ' .. PWB_config.interval)
+    return
+  end
+
   if command == 'logout' then
     local number = tonumber(msg)
     if not number or (number ~= 0 and number ~= 1) then
