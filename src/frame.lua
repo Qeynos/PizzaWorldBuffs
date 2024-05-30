@@ -177,8 +177,7 @@ end
 
 -- Update
 PWB.frame:SetScript('OnUpdate', function ()
-  local interval = 5
   -- Throttle this function so it doesn't run on every frame render
-  if (this.tick or 1) > GetTime() then return else this.tick = GetTime() + interval  end
+  if (this.tick or 1) > GetTime() then return else this.tick = GetTime() + PWB_config.interval  end
   PWB.frame.updateFrames()
 end)

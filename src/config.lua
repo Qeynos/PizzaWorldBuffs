@@ -10,6 +10,7 @@ local defaultConfig = {
   sharingEnabled = true,
   autoLogout = false,
   setQuit = false,
+  interval = 1,
   frame = {
     top = 50,
     center = 0,

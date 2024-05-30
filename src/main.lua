@@ -127,7 +127,7 @@ end)
 
 PWB:SetScript('OnUpdate', function ()
   -- Throttle this function so it doesn't run on every frame render
-  if (this.tick or 1) > GetTime() then return else this.tick = GetTime() + 1 end
+  if (this.tick or 1) > GetTime() then return else this.tick = GetTime() + PWB_config.interval end
 
   PWB.core.clearExpiredTimers()
 
