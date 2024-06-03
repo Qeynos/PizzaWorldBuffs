@@ -139,7 +139,7 @@ PWB:SetScript('OnUpdate', function ()
     if remainingTime > 0 then
       -- 检查是否经过了10秒以上的时间
       if not PWB.lastReminder or currentTime >= PWB.lastReminder + 10 then
-        local suffix = PWB_config.setQuit and '秒后将退出游戏' or '即将登出'
+        local suffix = PWB_config.setQuit and '秒后将退出游戏' or '秒后将登出'
         PWB:Print(remainingTime .. suffix .. "，\"/wb logout 0\"取消。")
         PWB.lastReminder = currentTime
       end
