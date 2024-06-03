@@ -78,7 +78,7 @@ PWB:SetScript('OnEvent', function ()
       PWB.core.setTimer(faction, boss, h, m, PWB.me, PWB.me)
 
       if PWB_config.autoLogout then
-        PWB:Print('即将收到增益效果，自动登出已启用，将在1分钟后登出。')
+        PWB:Print('即将收到增益效果，自动登出已启用，将在60秒后登出。')
         PWB.logoutAt = time() + 60
       end
     end
@@ -130,6 +130,18 @@ PWB:SetScript('OnUpdate', function ()
   if (this.tick or 1) > GetTime() then return else this.tick = GetTime() + PWB_config.interval end
 
   PWB.core.clearExpiredTimers()
+
+  if PWB_config.autoLogout and PWB.logoutAt and time() < PWB.logoutAt then
+    local currentTime = time()
+    local remainingTime = PWB.logoutAt - currentTime
+    if remainingTime > 0 then
+      -- 检查是否经过了10秒以上的时间
+      if not PWB.lastReminder or currentTime >= PWB.lastReminder + 10 then
+        PWB:Print("即将登出，剩余时间: " .. remainingTime .. "s，执行 /wb logout 0 取消登出。")
+        PWB.lastReminder = currentTime
+      end
+    end
+  end
 
   if PWB_config.autoLogout and PWB.logoutAt and time() >= PWB.logoutAt then
     PWB.logoutAt = nil
