@@ -113,7 +113,9 @@ SlashCmdList['PIZZAWORLDBUFFS'] = function (args, editbox)
 
     PWB.frame.updatePizzaWorldBuffsHeader()
     local suffix = PWB_config.autoLogout and ' 已启用，您下次重新登录或重新加载UI时将会自动禁用。' or ' 已禁用。'
-    PWB:Print('接收下一个增益后自动登出' .. suffix)
+    local suffixquit = PWB_config.setQuit and '自动退出游戏' or '自动登出'
+    
+    PWB:Print('接收下一个增益后' .. suffixquit .. suffix)
     return
   end
 

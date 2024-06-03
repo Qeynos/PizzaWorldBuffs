@@ -47,7 +47,8 @@ PWB:SetScript('OnEvent', function ()
     PWB.config.init()
     if PWB_config.autoLogout then
       PWB_config.autoLogout = false
-      PWB:Print('自动登出功能已自动禁用。要再次启用，请使用 /wb logout 1')
+      local suffix = PWB_config.setQuit and '自动退出游戏功能已自动禁用。' or '自动登出功能已自动禁用。'
+      PWB:Print(suffix .. '要再次启用，请使用 /wb logout 1')
     end
   end
 
@@ -78,7 +79,8 @@ PWB:SetScript('OnEvent', function ()
       PWB.core.setTimer(faction, boss, h, m, PWB.me, PWB.me)
 
       if PWB_config.autoLogout then
-        PWB:Print('即将收到增益效果，自动登出已启用，将在60秒后登出。')
+        local suffix = PWB_config.setQuit and '自动退出游戏' or '自动登出'
+        PWB:Print('即将收到增益效果，将在60秒后' .. suffix .. '。')
         PWB.logoutAt = time() + 60
       end
     end
@@ -137,7 +139,8 @@ PWB:SetScript('OnUpdate', function ()
     if remainingTime > 0 then
       -- 检查是否经过了10秒以上的时间
       if not PWB.lastReminder or currentTime >= PWB.lastReminder + 10 then
-        PWB:Print("即将登出，剩余时间: " .. remainingTime .. "秒，/wb logout 0 取消。")
+        local suffix = PWB_config.setQuit and '秒后将退出游戏' or '即将登出'
+        PWB:Print(remainingTime .. suffix .. "，\"/wb logout 0\"取消。")
         PWB.lastReminder = currentTime
       end
     end
@@ -145,13 +148,26 @@ PWB:SetScript('OnUpdate', function ()
 
   if PWB_config.autoLogout and PWB.logoutAt and time() >= PWB.logoutAt then
     PWB.logoutAt = nil
-    PWB.core.publishTimers()
-    if PWB_config.setQuit then
-      PWB:Print('正在退出...')
-      Quit()
+    local zone = GetZoneText()
+    if UnitOnTaxi("player") then
+      local suffix = PWB_config.setQuit and '正在飞行，取消退出游戏。' or '正在飞行，取消登出。'
+      PWB:Print(suffix)
+      PWB_config.autoLogout = false
+      PWB.frame.updatePizzaWorldBuffsHeader()
+    elseif zone ~= "奥格瑞玛" and zone ~= "暴风城" then
+      local suffix = PWB_config.setQuit and '已离开主城，取消退出游戏。' or '已离开主城，取消登出。'
+      PWB:Print(suffix)
+      PWB_config.autoLogout = false
+      PWB.frame.updatePizzaWorldBuffsHeader()
     else
-      PWB:Print('正在登出...')
-      Logout()
+      PWB.core.publishTimers()
+      if PWB_config.setQuit then
+        PWB:Print('正在退出游戏...')
+        Quit()
+      else
+        PWB:Print('正在登出...')
+        Logout()
+      end
     end
   elseif PWB.core.shouldPublishTimers() then
     PWB.core.publishTimers()
