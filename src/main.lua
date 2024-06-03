@@ -137,7 +137,7 @@ PWB:SetScript('OnUpdate', function ()
     if remainingTime > 0 then
       -- 检查是否经过了10秒以上的时间
       if not PWB.lastReminder or currentTime >= PWB.lastReminder + 10 then
-        PWB:Print("即将登出，剩余时间: " .. remainingTime .. "s，执行 /wb logout 0 取消登出。")
+        PWB:Print("即将登出，剩余时间: " .. remainingTime .. "秒，/wb logout 0 取消。")
         PWB.lastReminder = currentTime
       end
     end
